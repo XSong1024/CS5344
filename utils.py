@@ -55,4 +55,34 @@ def replace_chat_words(text):
     else:
         return text
     
-replace_chat_words('lol')
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+from sklearn.metrics import confusion_matrix
+
+def plot_confusion_matrix(y_test, y_pred, class_names=['Positive', 'Negative']):
+    """
+    Plot a confusion matrix using seaborn heatmap visualization.
+    
+    Parameters:
+    y_test: array-like, True labels.
+    y_pred: array-like, Predicted labels.
+    class_names: list of strings, Class names for the confusion matrix.
+    """
+    
+    # Calculate confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
+    
+    # Convert to percentage
+    cm_percentage = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+    
+    # Create a heatmap
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(cm_percentage, annot=True, fmt=".2%", cmap='Blues', cbar=True, 
+                xticklabels=class_names, yticklabels=class_names)
+    
+    plt.ylabel('True Label')
+    plt.xlabel('Predicted Label')
+    plt.title('Confusion Matrix')
+    plt.show()
