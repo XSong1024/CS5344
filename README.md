@@ -1,6 +1,11 @@
 # CS5344
  
-# Libraries
+# Some crucial libraries
 wordcloud
 pyspark
-pyarrow
+scikit-learn
+pandas
+numpy
+spacy
+nltk
+en_core_web_lg
